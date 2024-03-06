@@ -1,16 +1,12 @@
 #include "travel_itinerary.h"
 #include "db_functions.h"
 
-int	root_form(void)
+int	root_form()
 {
-	sqlite3	*db;
 	int	action = 0;
 	int	res = 0;
 	int	fseek_res = 0;
 
-	db = open_db();
-	if (db == NULL)
-		return EXIT_FAILURE;
 	printf("Welcome to your Travel Itinerary organizer!\n\nWhat would you like to do?\n1 = Start a new trip\n2 = Edit an existing trip\n3 = View a trip\n4 = Exit\n");
 	while (1)
 	{
@@ -30,30 +26,37 @@ int	root_form(void)
 		}
 		break;
 	}
-	if (action == NEW)
-	{
-		// new trip function
-	}
-	else if (action == EDIT)
-	{
-		// edit trip function
-	}
-	else if(action == VIEW)
-	{
-		// view trip function
-	}
-	else
-	{
-		sqlite3_close(db);
-		return EXIT_SUCCESS;
-	}
-	sqlite3_close(db);
-	return(EXIT_FAILURE);
+	return action;
 }
 
 int	main(void)
 {
-	if(root_form() == EXIT_SUCCESS)
-		return EXIT_SUCCESS;
+	sqlite3	*db = open_db();
+	int	action = 0;
+
+	if (db == NULL)
+		return EXIT_FAILURE;
+	while (1)
+	{
+		action = root_form();
+		if (action == NEW)
+		{
+			// new trip function
+		}
+		else if (action == EDIT)
+		{
+			// edit trip function
+		}
+		else if(action == VIEW)
+		{
+			// view trip function
+		}
+		else
+		{
+			sqlite3_close(db);
+			return EXIT_SUCCESS;
+		}
+	}
+	sqlite3_close(db);
 	return(EXIT_FAILURE);
 }

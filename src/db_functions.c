@@ -1,5 +1,5 @@
-#include "travel_itinerary.h"
-#include <sqlite3.h>
+#include "db_functions.h"
+#include <stdio.h>
 
 sqlite3	*open_db(void)
 {
