@@ -3,6 +3,7 @@ NAME = travelplanner
 # compilation
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
+LINKS	= -l sqlite3
 HEADER	= -I $(INCDIR)
 
 ifdef DEBUG
@@ -16,7 +17,10 @@ OBJDIR	= obj
 BINDIR	= bin
 
 # sources
-SRCS	= $(SRCDIR)/main.c
+SRCS	= $(SRCDIR)/main.c \
+	src/new_trip.c \
+	src/db_functions.c \
+	src/utils.c
 
 # objects
 OBJS	= $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
@@ -30,7 +34,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@mkdir -p $(BINDIR)
-	@$(CC) $(OBJS) -o $(BINDIR)/$(NAME)
+	@$(CC) $(OBJS) -o $(BINDIR)/$(NAME) $(LINKS)
 	@echo "$(PURPLE)$(NAME)$(NC) has been created"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c

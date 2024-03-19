@@ -1,5 +1,8 @@
 #include "travel_itinerary.h"
 #include "db_functions.h"
+#include <stdio.h>
+#include <stdlib.h>
+// #include <sqlite3.h>
 
 int	root_form()
 {
@@ -29,6 +32,7 @@ int	root_form()
 	return action;
 }
 
+// best practice only open connection as needed
 int	main(void)
 {
 	sqlite3	*db = open_db();
@@ -41,7 +45,7 @@ int	main(void)
 		action = root_form();
 		if (action == NEW)
 		{
-			// new trip function
+			new_trip();
 		}
 		else if (action == EDIT)
 		{
