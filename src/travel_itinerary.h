@@ -2,8 +2,6 @@
 # define TRAVEL_ITINERARY_H
 
 # include <time.h>
-# include <stdlib.h>
-# include <stdio.h>
 
 // parked for later add rental type to rental_struct
 // typedef enum rental_type
@@ -67,6 +65,8 @@ typedef struct transport
 	}	arrive_info;
 	char			*booking_nr;
 }	transport;
+
+int	new_trip(void);
 
 #endif
 
